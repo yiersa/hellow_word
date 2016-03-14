@@ -1,4 +1,4 @@
-package com.example.taoji.myapplication;
+package com.tools.taojike.androidtoolscollections;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

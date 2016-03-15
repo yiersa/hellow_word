@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.tools.taojike.androidtoolscollections.base.ActivityJump;
+
 import java.util.ArrayList;
 
 /**
@@ -59,11 +61,12 @@ public class MainActivity extends Activity {
         //将数据与界面进行绑定的操作
         @Override
         public void onBindViewHolder(ViewHolder viewHolder, int position) {
-            viewHolder.mTextView.setText(datas.get(position));
+            final String title = datas.get(position);
+            viewHolder.mTextView.setText(title);
             viewHolder.item_layout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    startActivity(title);
                 }
             });
         }
@@ -81,6 +84,13 @@ public class MainActivity extends Activity {
                 super(view);
                 mTextView = (TextView) view.findViewById(R.id.text);
                 item_layout = (LinearLayout) view.findViewById(R.id.item_layout);
+            }
+        }
+        private void startActivity(String title) {
+            if (title != null) {
+                if (title.equals("网络状态相关类")) {
+                    ActivityJump.startNetworkStateActivity(MainActivity.this);
+                }
             }
         }
     }

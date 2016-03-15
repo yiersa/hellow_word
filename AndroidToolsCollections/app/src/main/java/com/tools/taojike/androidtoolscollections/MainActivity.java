@@ -3,6 +3,10 @@ package com.tools.taojike.androidtoolscollections;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Environment;
+
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -13,8 +17,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.tools.taojike.androidtoolscollections.base.ActivityJump;
+import com.tools.taojike.androidtoolscollections.utils.DownLoadFile;
 
 import java.util.ArrayList;
+
 
 /**
  * 参考 http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2014/1118/2004.html
@@ -24,7 +30,7 @@ public class MainActivity extends Activity {
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private MyAdapter mAdapter;
-
+    private DownLoadFile downLoadFile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +49,7 @@ public class MainActivity extends Activity {
     private ArrayList<String> initData() {
         ArrayList<String> listData = new ArrayList<>();
         listData.add("网络状态相关类");
+        listData.add("下载文件");
         return listData;
     }
 
@@ -54,7 +61,7 @@ public class MainActivity extends Activity {
         //创建新View，被LayoutManager所调用
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-            View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item,viewGroup,false);
+            View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item, viewGroup, false);
             ViewHolder vh = new ViewHolder(view);
             return vh;
         }
@@ -91,7 +98,37 @@ public class MainActivity extends Activity {
                 if (title.equals("网络状态相关类")) {
                     ActivityJump.startNetworkStateActivity(MainActivity.this);
                 }
+                else if (title.equals("下载文件")) {
+                    downLoadFile();
+                }
             }
         }
+
+
+    }
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if (downLoadFile == null)
+                return;
+            switch (msg.what) {
+                case DownLoadFile.START_DOWNLOAD :
+                    downLoadFile.setWaitDialogProcess(msg.arg1, msg.arg2);
+                    break;
+                case DownLoadFile.FINISH_DOWNLOAD :
+                    downLoadFile.dissmissWaitDialog();
+                    break;
+                case DownLoadFile.FAIL_DOWNLOAD :
+                    downLoadFile.dissmissWaitDialog();
+                    break;
+            }
+        }
+    };
+    private void downLoadFile() {
+        String path = Environment.getExternalStorageDirectory().toString() + "/file";
+        String url = "http://dlsw.baidu.com/sw-search-sp/soft/3a/12350/QQ_8.1.17255.0_setup.1456298445.exe";
+        downLoadFile = new DownLoadFile(this, url, path, "下载",handler);
+        downLoadFile.startDownload();
     }
 }

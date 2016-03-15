@@ -1,20 +1,16 @@
 package com.tools.taojike.androidtoolscollections.utils;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.text.DecimalFormat;
-import java.util.List;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
-import android.telephony.CellInfo;
-import android.telephony.NeighboringCellInfo;
 import android.telephony.TelephonyManager;
-import android.telephony.cdma.CdmaCellLocation;
-import android.telephony.gsm.GsmCellLocation;
 import android.util.Log;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.text.DecimalFormat;
 
 /**
  * Created by taoji on 2016/3/14 0014.
@@ -107,6 +103,12 @@ public class NetWorkUtil {
         return result;
     }
 
+    /**
+     * 执行命令行
+     * @param cmd
+     * @param filter 对输出过滤
+     * @return
+     */
     public static String callCmd(String cmd, String filter) {
         String result = "";
         String line = "";

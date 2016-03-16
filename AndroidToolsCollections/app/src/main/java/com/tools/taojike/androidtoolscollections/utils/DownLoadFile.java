@@ -31,8 +31,8 @@ public class DownLoadFile {
     public Activity activity = null;
     private static final String TAG = "AutoUpdate";
     private String strURL = "";
-    private ProgressBar auto_update_progress_bar = null;
-    private TextView auto_update_progress_text = null;
+    private ProgressBar progress_bar = null;
+    private TextView progress_text = null;
     private AlertDialog dialog;
     private Boolean isUpdate = true;
     private boolean isCancelDownload=false;
@@ -58,9 +58,9 @@ public class DownLoadFile {
         LayoutInflater inflate = LayoutInflater.from(activity);
         View auto_update_progress_dialog = inflate.inflate(
                 R.layout.progress_dialog, null);
-        auto_update_progress_bar = (ProgressBar) auto_update_progress_dialog
+        progress_bar = (ProgressBar) auto_update_progress_dialog
                 .findViewById(R.id.progress_bar);
-        auto_update_progress_text = (TextView) auto_update_progress_dialog
+        progress_text = (TextView) auto_update_progress_dialog
                 .findViewById(R.id.progress_text);
 
         dialog = new AlertDialog.Builder(activity)
@@ -93,9 +93,9 @@ public class DownLoadFile {
     public void setWaitDialogProcess(int curProcess, int total) {
         if (total == 0)
             return;
-        auto_update_progress_bar.setProgress(curProcess * 100 / total);
+        progress_bar.setProgress(curProcess * 100 / total);
         if (this.isUpdate) {
-            auto_update_progress_text
+            progress_text
                     .setText(curProcess + "KB/" + total + "KB");
         }
     }

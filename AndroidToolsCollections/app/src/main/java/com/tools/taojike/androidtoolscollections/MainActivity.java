@@ -50,6 +50,7 @@ public class MainActivity extends Activity {
         ArrayList<String> listData = new ArrayList<>();
         listData.add("网络状态相关类");
         listData.add("下载文件");
+        listData.add("Bitmesh");
         return listData;
     }
 
@@ -100,6 +101,9 @@ public class MainActivity extends Activity {
                 }
                 else if (title.equals("下载文件")) {
                     downLoadFile();
+                }
+                else if (title.equals("Bitmesh")) {
+                    ActivityJump.startThirdActivity(MainActivity.this);
                 }
             }
         }

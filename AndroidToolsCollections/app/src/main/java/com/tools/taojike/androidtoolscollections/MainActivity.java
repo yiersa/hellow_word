@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.tools.taojike.androidtoolscollections.base.ActivityJump;
 import com.tools.taojike.androidtoolscollections.utils.DownLoadFile;
@@ -119,6 +120,7 @@ public class MainActivity extends Activity {
             switch (msg.what) {
                 case DownLoadFile.START_DOWNLOAD :
                     downLoadFile.setWaitDialogProcess(msg.arg1, msg.arg2);
+                    Toast.makeText(MainActivity.this, "", Toast.LENGTH_SHORT).show();
                     break;
                 case DownLoadFile.FINISH_DOWNLOAD :
                     downLoadFile.dissmissWaitDialog();

@@ -1,0 +1,7 @@
+AndroidToolsCollections/.gradle/2.10/taskArtifacts/
+AndroidToolsCollections/.idea/
+*.iml
+AndroidToolsCollections/app/build/generated/source/buildConfig/
+AndroidToolsCollections/app/build/
+*.properties
+AndroidToolsCollections/build/

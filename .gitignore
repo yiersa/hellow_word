@@ -5,3 +5,4 @@ AndroidToolsCollections/app/build/generated/source/buildConfig/
 AndroidToolsCollections/app/build/
 *.properties
 AndroidToolsCollections/build/
+AndroidToolsCollections/.gradle/

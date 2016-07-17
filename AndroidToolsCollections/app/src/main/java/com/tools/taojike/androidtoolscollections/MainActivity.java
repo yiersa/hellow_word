@@ -52,6 +52,7 @@ public class MainActivity extends Activity {
         listData.add("网络状态相关类");
         listData.add("下载文件");
         listData.add("Bitmesh");
+        listData.add("子线程开启toast");
         return listData;
     }
 
@@ -105,6 +106,8 @@ public class MainActivity extends Activity {
                 }
                 else if (title.equals("Bitmesh")) {
                     ActivityJump.startThirdActivity(MainActivity.this);
+                } else if (title.equals("子线程开启toast")) {
+                    ActivityJump.startFourActivity(MainActivity.this);
                 }
             }
         }
